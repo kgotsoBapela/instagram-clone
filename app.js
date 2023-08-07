@@ -8,8 +8,7 @@ const btnLogout = document.querySelector('#btnLogout');
 const btnUpload = document.querySelector('#btnUpload');
 
 app.style.display = "none";
-
-console.log(app)
+// console.log(app)
 
 firebaseAuthContainer.style.display = "none";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -25,7 +24,20 @@ var firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
+const db = firebase.firestore();
 
+db.collection("users").add({
+  first: "Ada",
+  last: "Lovelace",
+  born: 1815
+})
+.then((docRef) => {
+  console.log("Document written with ID: ", docRef.id);
+})
+.catch((error) => {
+  console.error("Error adding document: ", error);
+});
+console.log(db);
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
@@ -64,7 +76,7 @@ function redirectToAuth(){
   });
 }
 
-btnLogout.addEventListener('click', handleLogout)
+btnLogout.addEventListener('click', handleLogout);
 
 function handleLogout(){
   signOut(auth).then(() => {
