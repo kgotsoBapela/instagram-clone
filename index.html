@@ -132,7 +132,7 @@
                 </div>
 
                 <div class="margin-left">
-                  <button class="btnUpload" id="btnUpload">
+                  <button class="btnUpload show-Modal" id="btnUpload">
                     Upload
                   </button>
                 </div>
@@ -1120,6 +1120,40 @@
               <div class="sidebar-footer"></div>
             </div>
           </div>
+
+          <div class="showModal" id="modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Post</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form>
+                            <!-- <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">User Name</label>
+                                <input type="text" class="form-control" id="username">
+                            </div> 
+                            -->
+                            <div class="mb-3">
+                                <label for="recipient-name" class="col-form-label">Image Link</label>
+                                <input type="text" class="form-control" id="imagelink">
+                            </div>
+                            <div class="mb-3">
+                                <label for="message-text" class="col-form-label">Caption</label>
+                                <textarea class="form-control" id="caption"></textarea>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button id="create-post-btn" type="button" class="btn btn-primary">Create Post</button>
+                        <button id="edit-post-btn" type="button" class="btn btn-primary margin-left">Edit Post</button>
+                    </div>
+                </div>
+              </div>
+            </div>
+
         </main>
       </div>
     </div>

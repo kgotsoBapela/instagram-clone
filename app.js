@@ -2,13 +2,17 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.1.0/firebas
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-analytics.js";
 import { getAuth, signInWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged,signOut } from "https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js";
 
-const app = document.querySelector('#app');
-const firebaseAuthContainer = document.querySelector('#firebaseui-auth-container');
-const btnLogout = document.querySelector('#btnLogout');
-const btnUpload = document.querySelector('#btnUpload');
+const app = document.querySelector('#app'),
+      firebaseAuthContainer = document.querySelector('#firebaseui-auth-container'),
+      btnLogout = document.querySelector('#btnLogout'),
+      btnUpload = document.querySelector('.btnUpload'),
+      showModal = document.querySelector('.showModal');
+  
 
 app.style.display = "none";
 // console.log(app)
+btnLogout.addEventListener('click', handleLogout);
+btnUpload.addEventListener('click', handleUpload);
 
 firebaseAuthContainer.style.display = "none";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
@@ -26,17 +30,7 @@ firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
 
-db.collection("users").add({
-  first: "Ada",
-  last: "Lovelace",
-  born: 1815
-})
-.then((docRef) => {
-  console.log("Document written with ID: ", docRef.id);
-})
-.catch((error) => {
-  console.error("Error adding document: ", error);
-});
+
 console.log(db);
 // Initialize the FirebaseUI Widget using Firebase.
 var ui = new firebaseui.auth.AuthUI(firebase.auth());
@@ -76,8 +70,6 @@ function redirectToAuth(){
   });
 }
 
-btnLogout.addEventListener('click', handleLogout);
-
 function handleLogout(){
   signOut(auth).then(() => {
     // Sign-out successful
@@ -86,4 +78,10 @@ function handleLogout(){
     // An error happened.
     console.log(error)
   });
+}
+
+function handleUpload(){
+  showModal.classList.add("active");
+  console.log(showModal)
+  console.log("Upload clicked");
 }
