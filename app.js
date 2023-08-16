@@ -29,6 +29,7 @@ var firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const auth = firebase.auth();
 const db = firebase.firestore();
+const analytics = firebase.analytics()
 
 
 console.log(db);
@@ -61,12 +62,8 @@ function redirectToAuth(){
 
   ui.start('#firebaseui-auth-container', {
     signInOptions: [
-      {
-        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID   
-      },
-      // firebase.auth.EmailAuthProvider.PROVIDER_ID , // Twitter does not support scopes.
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
     ],
     // Other config options...
   });
