@@ -62,9 +62,11 @@ function redirectToAuth(){
   ui.start('#firebaseui-auth-container', {
     signInOptions: [
       {
-        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        requireDisplayName: false
-      }
+        provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+        provider: firebase.auth.EmailAuthProvider.PROVIDER_ID   
+      },
+      // firebase.auth.EmailAuthProvider.PROVIDER_ID , // Twitter does not support scopes.
+      firebase.auth.GoogleAuthProvider.PROVIDER_ID
     ],
     // Other config options...
   });
