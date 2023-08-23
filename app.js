@@ -128,12 +128,15 @@ function uploadImage() {
     // Create a reference to the Firebase Storage bucket
     var storageRef = firebase.storage().ref();
 
-    // Generate a unique name for the image file
+    // // Generate a unique name for the image file
     var imageName = Date.now() + "_" + selectedFile.name;
 
-    // Upload the image to Firebase Storage
+    // // Upload the image to Firebase Storage
     var imageRef = storageRef.child("images/" + imageName);
     var uploadTask = imageRef.put(selectedFile);
+
+    console.log(imageRef)
+    console.log(uploadTask)
 
     uploadTask.on(
       "state_changed",
