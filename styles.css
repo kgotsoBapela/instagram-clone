@@ -81,13 +81,13 @@
 }
 
 .navbar-icons-inner {
-    padding: 0 0 0 24px;
+    padding: 0 0 10px 24px;
     display: flex;
     justify-content: flex-end;
 }
 
 .margin-left {
-    margin-left: 22px;
+    margin-left: 20px;
 }
 .margin-left-small {
     margin-left: 14px;
@@ -189,7 +189,10 @@ main {
     border: 1px solid var(--color-border);
     margin-top: 24px;
 }
-
+.header .options:hover{
+    cursor: pointer;
+    background-color: red;
+}
 .profile-area {
     display: flex;
     align-items: center;
@@ -345,13 +348,26 @@ main {
 .body img {
     width: 100%;
 }
-.showModal{
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    /* box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1); */
+/* 
+.modal-dialog, .modal-content {
+    height: 35%;
+} */
+/* .modal-dialog{
+    height: 35%;
+} */
+
+.modal-container.option .modal-content{
+    /* color: white; */
+    /* height: inherit; */
+    /* padding: 14px; */
 }
-.showModal .active{
-    opacity :  1;
+.modal-container.option .btn{
+    padding: 5px;
+    /* width: 30px; */
+    /* border: solid #8e8e8e 1px; */
+}
+.modal-container.option .btn:hover{
+    /* padding: 5px; */
+    /* width: 30px; */
+    border: solid #8e8e8e 1px;
 }
