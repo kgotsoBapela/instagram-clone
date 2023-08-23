@@ -118,26 +118,53 @@ function handleLogout(){
 }
 
 function uploadImage() {
-      // console.log(uploadModal);
 
-  $(uploadModal).modal("show");
-    const ref = firebase.storage().ref();
-    const file = document.querySelector("#photo").files[0];
-    const name = +new Date() + "-" + file.name;
+  var imageInput = document.getElementById("photo");
+  var selectedFile = imageInput.files[0];
 
-    console.log(name);
-    const metadata = {
-        contentType: file.type
-    };
-    const task = ref.child(name).put(file, metadata);task
-    .then(snapshot => snapshot.ref.getDownloadURL())
-    .then(url => {
-    console.log(url);
-    alert('image uploaded successfully');
-    document.querySelector("#image").src = url;
-  })
-  .catch(console.error);
+  // console.log(imageInput);
+
+  if (selectedFile) {
+    // Create a reference to the Firebase Storage bucket
+    var storageRef = firebase.storage().ref();
+
+    // Generate a unique name for the image file
+    var imageName = Date.now() + "_" + selectedFile.name;
+
+    // Upload the image to Firebase Storage
+    var imageRef = storageRef.child("images/" + imageName);
+    var uploadTask = imageRef.put(selectedFile);
+
+    uploadTask.on(
+      "state_changed",
+      function (snapshot) {
+        // Progress monitoring
+        var progress =
+          (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+        console.log("Upload is " + progress + "% done");
+      },
+      function (error) {
+        // Handle errors during the upload
+        console.error("Error uploading image: ", error);
+      },
+      function () {
+        // Handle successful upload
+        console.log("Image uploaded successfully");
+        
+        // You can now save the image URL to Firestore or perform any other actions.
+        // For example, to save the image URL to Firestore:
+        imageRef.getDownloadURL().then(function (downloadURL) {
+          // Save downloadURL to Firestore document
+          // Here, you would typically add it to a Firestore document using Firestore's API.
+          // Remember to include Firestore in your HTML as well.
+        });
+      }
+    );
+  } else {
+    console.error("No file selected");
+  }
 }
+
 
 function handleUpload(){
 
